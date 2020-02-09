@@ -8,7 +8,7 @@ library(ggplot2)
 
 
 # download raw data from github
-percents <- read.csv("https://raw.githubusercontent.com/SameOldSamOld/CyTOFAuroraComparison/master/percountCounts.csv",
+percents <- read.csv("https://raw.githubusercontent.com/SameOldSamOld/CyTOFAuroraComparison/master/data/percountCounts.csv",
               row.names = 1, header = T)
 
 # Change x labels to human readable for final figure
