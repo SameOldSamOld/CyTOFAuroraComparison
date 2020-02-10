@@ -1,5 +1,6 @@
 # CyTOFAuroraComparison
-Addressing reviewer comments in regard to a comparison between CyTOF and Aurora data
+
+This GitHub page contains several scripts addressing reviewer comments in regard to a comparison between CyTOF and Aurora data
 
 ## Code to create figure 1d
 
@@ -19,4 +20,12 @@ You can run this code by copy pasting this code into R:
 
     eval(parse("https://raw.githubusercontent.com/SameOldSamOld/CyTOFAuroraComparison/master/ccc_plot.R"))
 
-## Code to calculate f-scores
+## Code to calculate and plot F-scores
+
+1) Download this GitHub repository
+
+2) Unzip the folder and open *FlowSOM-Fscore.R* in RStudio
+
+3) Click Source or ⌘:arrow_up:S
+
+The algorithm will calculate 46 Self Organising Maps and can take at least 10 minutes to run. 
