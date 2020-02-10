@@ -17,7 +17,7 @@ library(rstudioapi)
 current_path <- rstudioapi::getActiveDocumentContext()$path
 setwd(dirname(current_path))
 
-# Load datasets for Aurora
+# Load datasets for Aurora & select Markers
 asinh_value <- 5
 seed    <- 44
 Fscore  <- VarScore <- RangeScore <- MeanScore <- list()
@@ -45,7 +45,7 @@ names(marker.A) <- c("FJComp-eFluor 450-A", "FJComp-BV480-A", "FJComp-BV510-A", 
 fs.A <- fs.A[1:3][,names(marker.A)]
 
 
-# Need to initialise 'realClusters' with clusterSide = 2
+# Need to initialise 'realClusters' with a 2x2 SOM
 data1 <- exprs(fs.A[[1]])
 data1[, names(marker.A)] <- asinh(data1[, names(marker.A)] / asinh_value)
 data2 <- exprs(fs.A[[2]])
@@ -66,7 +66,6 @@ set.seed(seed)
 out <- FlowSOM::BuildSOM(out, colsToUse = names(marker.A), xdim = 2, ydim = 2)
 set.seed(seed)
 out <- FlowSOM::BuildMST(out)
-set.seed(seed)
 labels_pre <- out$map$mapping[, 1]
 metacl <- metaClustering_consensus(out$map$codes, k = 3, seed = seed)
 realClusters <- out$map$mapping[,1]
@@ -75,6 +74,7 @@ realClusters <- out$map$mapping[,1]
 Fscore <- VarScore <- RangeScore <- MeanScore <- list()
 for (i in 3:25) {
 
+  # Calculate Self Organising Map
   set.seed(seed)
   out <- FlowSOM::ReadInput(data_FlowSOM, transform = FALSE, scale = FALSE)
   set.seed(seed)
@@ -85,22 +85,19 @@ for (i in 3:25) {
   out <- FlowSOM::BuildMST(out)
 
   # extract cluster labels (pre meta-clustering) from output object
-  set.seed(seed)
   labels_pre <- out$map$mapping[, 1]
 
   set.seed(seed)
   metacl <- metaClustering_consensus(out$map$codes, k = 8, seed = seed)
-  # set.seed(seed)
   # FlowSOM::PlotVariable(out, metacl)
-  set.seed(seed)
   predictedClusters <- out$map$mapping[,1]
-  set.seed(seed)
-
-  Fscore[[i]] <- FMeasure(realClusters,predictedClusters)
-  VarScore[[i]] <- var(as.numeric(table(predictedClusters)))
+  
+  # Record scores of exponentially incremented clustering
+      Fscore[[i]] <- FMeasure(realClusters,predictedClusters)
+    VarScore[[i]] <- var(as.numeric(table(predictedClusters)))
   RangeScore[[i]] <- range(as.numeric(table(predictedClusters)))
-  MeanScore[[i]] <- mean(as.numeric(table(predictedClusters)))
-  realClusters <- predictedClusters
+   MeanScore[[i]] <- mean(as.numeric(table(predictedClusters)))
+     realClusters <- predictedClusters
 }
 
 Fscore.Aurora <- unlist(Fscore)
@@ -112,7 +109,7 @@ Var.Aurora    <- unlist(VarScore)
 
 FlowSOM_Clusters <- 3:25
 FlowSOM_Clusters <- FlowSOM_Clusters^2
-zz <- cbind(FlowSOM_Clusters, Fscore.Aurora, Min.Aurora, Max.Aurora, Mean.Aurora, Var.Aurora)
+out_df <- cbind(FlowSOM_Clusters, Fscore.Aurora, Min.Aurora, Max.Aurora, Mean.Aurora, Var.Aurora)
 
 ## Calculate values for CyTOF
 
@@ -154,11 +151,9 @@ set.seed(seed)
 out <- FlowSOM::BuildMST(out)
 
 # extract cluster labels (pre meta-clustering) from output object
-set.seed(seed)
 labels_pre <- out$map$mapping[, 1]
 set.seed(seed)
 metacl <- metaClustering_consensus(out$map$codes, k = 3, seed = seed)
-set.seed(seed)
 realClusters <- out$map$mapping[,1]
 
 for (i in 3:25) {
@@ -171,20 +166,17 @@ for (i in 3:25) {
                            xdim = i, ydim = i)
   set.seed(seed)
   out <- FlowSOM::BuildMST(out)
-  set.seed(seed)
   # FlowSOM::PlotStars(out)
 
   # extract cluster labels (pre meta-clustering) from output object
-  set.seed(seed)
   labels_pre <- out$map$mapping[, 1]
 
   set.seed(seed)
   metacl <- metaClustering_consensus(out$map$codes, k = 8, seed = seed)
-  set.seed(seed)
   # FlowSOM::PlotVariable(out, metacl)
-  set.seed(seed)
   predictedClusters <- out$map$mapping[,1]
-  set.seed(seed)
+  
+  # Record scores of exponentially incremented clustering
       Fscore[[i]] <- FMeasure(realClusters,predictedClusters)
     VarScore[[i]] <- var(as.numeric(table(predictedClusters)))
   RangeScore[[i]] <- range(as.numeric(table(predictedClusters)))
@@ -199,7 +191,9 @@ Max.CyTOF    <- Range.CyTOF[seq(from = 2, to = length(Range.CyTOF), by = 2)]
 Mean.CyTOF   <- unlist(MeanScore)
 Var.CyTOF    <- unlist(VarScore)
 
-z <- as.data.frame(cbind(zz, Fscore.CyTOF, Min.CyTOF, Max.CyTOF, Mean.CyTOF, Var.CyTOF))
+z <- as.data.frame(cbind(out_df, Fscore.CyTOF, Min.CyTOF, Max.CyTOF, Mean.CyTOF, Var.CyTOF))
+
+## Plot Summarised statistics for Aurora & CyTOF
 
 ggplot(data = z, aes(x = FlowSOM_Clusters, y = Fscore.Aurora)) +
   geom_point() +
