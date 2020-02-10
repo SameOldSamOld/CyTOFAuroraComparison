@@ -8,7 +8,7 @@ This GitHub page contains several scripts addressing reviewer comments in regard
 
 */data/percountCounts.csv* is the dataset with raw values used to calculate 95% confidence interval as requested by reviewers.
 
-You can run this code by copy pasting this code into R:
+You can run this code by copy pasting this code into the RStudio Console:
 
     eval(parse("https://raw.githubusercontent.com/SameOldSamOld/CyTOFAuroraComparison/master/plotPCCounts_figure1d.R"))
 
@@ -16,7 +16,7 @@ You can run this code by copy pasting this code into R:
 
 *ccc_plot.R* was used to calculate the concordance correlation coefficient used in a figure for our paper.
 
-You can run this code by copy pasting this code into R:
+You can run this code by copy pasting this code into the RStudio Console:
 
     eval(parse("https://raw.githubusercontent.com/SameOldSamOld/CyTOFAuroraComparison/master/ccc_plot.R"))
 
