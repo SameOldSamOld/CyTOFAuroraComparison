@@ -16,7 +16,9 @@ You can run this code by copy pasting this code into the RStudio Console:
 
 ## Code to generate Concordance Correlation Coefficient
 
-*ccc_plot.R* was used to calculate the concordance correlation coefficient used in a figure for our paper.
+![The concordance correlation coefficient plot](/data/ccc_plot.pdf) was generated to calculate a coefficient for similar markers between CyTOF and Aurora technologies. The following code may be used to reproduce this value.
+
+*ccc_plot.R* was used to calculate the concordance correlation coefficient.
 
 You can run this code by copy pasting this code into the RStudio Console:
 
