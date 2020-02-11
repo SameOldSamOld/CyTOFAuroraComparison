@@ -26,10 +26,14 @@ You can run this code by copy pasting this code into the RStudio Console:
 
 ## Code to calculate and plot F-scores
 
+F-scores from the FlowSOM package were used to assess the effect of increasing the number of clusters used in each Self Organising Map generation. 
+
+To run this code you will need the raw dataset included in /data/. Follow these steps to run this code in R
+
 1) Download this GitHub repository
 
 2) Unzip the folder and open *FlowSOM-Fscore.R* in RStudio
 
 3) Click Source or ⌘:arrow_up:S
 
-The algorithm will calculate 46 Self Organising Maps and can take at least 10 minutes to run. 
+The algorithm will calculate 48 Self Organising Maps and can take at least 10 minutes to run. 
