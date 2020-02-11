@@ -4,6 +4,8 @@ This GitHub page contains several scripts addressing reviewer comments in regard
 
 ## Code to create figure 1d
 
+![Figure 1d.](/data/fig1d.pdf)
+
 *plotPCCounts.R* is the R code used to create figure 1d using ggplot2. It uses the data from */data/percountCounts.csv* to reproduce figure 1d.
 
 */data/percountCounts.csv* is the dataset with raw values used to calculate 95% confidence interval as requested by reviewers.
