@@ -4,7 +4,7 @@ This GitHub page contains several scripts addressing reviewer comments in regard
 
 ## Code to create figure 1d
 
-![Figure 1d.](/data/fig1d.pdf)
+![Figure 1d.](https://github.com/SameOldSamOld/CyTOFAuroraComparison/blob/master/data/fig1d.pdf)
 
 *plotPCCounts.R* is the R code used to create figure 1d using ggplot2. It uses the data from */data/percountCounts.csv* to reproduce figure 1d.
 
