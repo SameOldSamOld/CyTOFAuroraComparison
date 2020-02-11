@@ -1,5 +1,6 @@
 ## Sam Old - 10th Feburary 2020
-## FLOWSOM
+## FLOWSOM 
+# required packages are FlowCore for loading, FlowSOM for generating SOMs, and ggplot2 for visualisation.
 if (!requireNamespace("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
 if (!requireNamespace("FlowSOM", quietly = TRUE))
@@ -18,9 +19,6 @@ current_path <- rstudioapi::getActiveDocumentContext()$path
 setwd(dirname(current_path))
 
 # Load datasets for Aurora & select Markers
-asinh_value <- 5
-seed    <- 44
-Fscore  <- VarScore <- RangeScore <- MeanScore <- list()
 fsFiles <- c(
   "data/AURORA_DS_PBS1_11.fcs",
   "data/AURORA_DS_PBS1_8.fcs",
@@ -44,6 +42,10 @@ names(marker.A) <- c("FJComp-eFluor 450-A", "FJComp-BV480-A", "FJComp-BV510-A", 
                      "FJComp-PE-Cy7-A", "FJComp-APC-A", "FJComp-Alexa Fluor 647-A", "FJComp-Alexa Fluor 700-A", "FJComp-APC-Fire 750-A")
 fs.A <- fs.A[1:3][,names(marker.A)]
 
+# Set values for SOM computations
+asinh_value <- 5
+seed        <- 44
+Fscore  <- VarScore <- RangeScore <- MeanScore <- list()
 
 # Need to initialise 'realClusters' with a 2x2 SOM
 data1 <- exprs(fs.A[[1]])
@@ -156,6 +158,7 @@ set.seed(seed)
 metacl <- metaClustering_consensus(out$map$codes, k = 3, seed = seed)
 realClusters <- out$map$mapping[,1]
 
+# Generate i^2 cluster sizes for 3-25, and compare to the past iteration
 for (i in 3:25) {
   set.seed(seed)
   out <- FlowSOM::ReadInput(data_FlowSOM, transform = FALSE, scale = FALSE)
@@ -185,11 +188,11 @@ for (i in 3:25) {
 }
 
 Fscore.CyTOF <- unlist(Fscore)
-Range.CyTOF  <- unlist(RangeScore)
-Min.CyTOF    <- Range.CyTOF[seq(from = 1, to = length(Range.CyTOF), by = 2)]
-Max.CyTOF    <- Range.CyTOF[seq(from = 2, to = length(Range.CyTOF), by = 2)]
-Mean.CyTOF   <- unlist(MeanScore)
-Var.CyTOF    <- unlist(VarScore)
+ Range.CyTOF <- unlist(RangeScore)
+   Min.CyTOF <- Range.CyTOF[seq(from = 1, to = length(Range.CyTOF), by = 2)]
+   Max.CyTOF <- Range.CyTOF[seq(from = 2, to = length(Range.CyTOF), by = 2)]
+  Mean.CyTOF <- unlist(MeanScore)
+   Var.CyTOF <- unlist(VarScore)
 
 z <- as.data.frame(cbind(out_df, Fscore.CyTOF, Min.CyTOF, Max.CyTOF, Mean.CyTOF, Var.CyTOF))
 
