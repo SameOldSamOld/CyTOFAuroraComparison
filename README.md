@@ -6,7 +6,7 @@ This GitHub page contains scripts used in our current publication comparing cyto
 
 ## Code to create figure 1d
 
-In ![figure 1d ](https://github.com/SameOldSamOld/CyTOFAuroraComparison/blob/master/data/fig1d.pdf) we wanted to visually and statistically compare the ability of CyTOF and Aurora technologies to measure similar percentages of 11 immune cell populations in our sample data. We chose to show the 95% confidence interval of each cell population replicate to compare the estimation of the true population percentage using CyTOF and Aurora. The statistical values were calculated in R and visualised in ggplot21
+In ![figure 1d ](https://github.com/SameOldSamOld/CyTOFAuroraComparison/blob/master/data/fig1d.pdf) we wanted to visually and statistically compare the ability of CyTOF and Aurora technologies to measure similar percentages of 11 immune cell populations in our sample data. We chose to show the 95% confidence interval of each cell population replicate to compare the estimation of the true population percentage using CyTOF and Aurora. The statistical values were calculated in R and visualised in ggplot2<sup>1</sup>
 
 To obtain the raw data values, Ferrer-Font et al. performed expert gating upon each of the 11 cell populations to identify the percentage of all cells in each FCS file. These percentages were loaded into R to calculate the mean and 95% confidence interval. The script and data for loading, computing and visualising are available as described below. They can be downloaded and run in RStudio from this page.
 
