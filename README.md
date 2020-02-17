@@ -1,5 +1,3 @@
-Highlighted things are for github formatting and shouldn’t be changed
-
 # CyTOFAuroraComparison
 
 This GitHub page contains scripts used in our current publication comparing cytometry datasets to create figures addressing reviewer comments. 
@@ -10,7 +8,7 @@ In ![figure 1d ](https://github.com/SameOldSamOld/CyTOFAuroraComparison/blob/mas
 
 To obtain the raw data values, Ferrer-Font et al. performed expert gating upon each of the 11 cell populations to identify the percentage of all cells in each FCS file. These percentages were loaded into R to calculate the mean and 95% confidence interval. The script and data for loading, computing and visualising are available as described below. They can be downloaded and run in RStudio from this page.
 
-*plotPCCounts.R* is the R code used to create figure 1d using ggplot21
+*plotPCCounts.R* is the R code used to create figure 1d using ggplot2<sup>1</sup>
 
 To obtain the raw data values, *plotPCCounts.R* requires the data from */data/percountCounts.csv* to reproduce figure 1d.
 
@@ -22,7 +20,7 @@ You can run this code by copy pasting this code into the RStudio Console:
 
 ## Code to generate Concordance Correlation Coefficient
 
-In order to address whether cell percentages defined in our CyTOF or Aurora datasets were comparable, we calculated the concordance correlation coefficient which calculates the agreement between two variables. This statistic was calculated by installing the R package *epiR2* and visualised using *ggplot21*.
+In order to address whether cell percentages defined in our CyTOF or Aurora datasets were comparable, we calculated the concordance correlation coefficient which calculates the agreement between two variables. This statistic was calculated by installing the R package *epiR<sup>2</sup>* and visualised using *ggplot21*.
 
  ![concordance correlation coefficient plot](/data/ccc_plot.pdf) was generated to calculate a coefficient for similar markers between CyTOF and Aurora technologies. This is performed by installing the *epiR* package to calculate the concordance correlation coefficient from raw values obtained by Laura Ferrer. The calculation was performed between two sets of observations (CyTOF & Aurora) with a 95% confidence interval using the ‘z-transform’ method. 
 
@@ -34,9 +32,9 @@ You can run this code by copy pasting this code into the RStudio Console:
 
 ## Code to calculate and plot F-scores
 
-In order to determine the number of clusters that would optimally represent our data using Self-organising Maps for cytometry data such as FlowSOM3, we compared the effect of incrementing the number of clusters in a [i,j] matrix. To calculate the precision and recall between the different maps. FlowSOM3 has an inbuilt statistic to compare two FlowSOM3 graphs called an F score. The F score measures precision and recall between two observations. We observed that an optimal range of clusters was achieved between 80 - 150 clusters for our dataset. A lower number of clusters was not biologically relevant and higher numbers of clusters caused cyclic graphs.
+In order to determine the number of clusters that would optimally represent our data using Self-organising Maps for cytometry data such as FlowSOM<sup>3</sup>, we compared the effect of incrementing the number of clusters in a [i,j] matrix. To calculate the precision and recall between the different maps. FlowSOM<sup>3</sup>,  has an inbuilt statistic to compare two FlowSOM<sup>3</sup>,  graphs called an F score. The F score measures precision and recall between two observations. We observed that an optimal range of clusters was achieved between 80 - 150 clusters for our dataset. A lower number of clusters was not biologically relevant and higher numbers of clusters caused cyclic graphs.
 
-We used several R packages to calculate the F score as cluster sizes are incremented, including FlowSOM3, flowCore4, and ggplot21 for visualisation. The script *FlowSOM-Fscore.R* first uses *flowCore4* to load the FCS files attached in /data/. which is followed by marker selection and data normalisation. The loaded FCS files are then used to calculate a Self-organising map using *FlowSOM*. 24 *FlowSOM* graphs are generated for both Aurora and CyTOF FCS files with exponentially larger cluster sizes {2 … 25}^2 and the *FMeasure* algorithm from *FlowSOM* is used to generate an F-score after each incrementation. The F-scores are finally plotted using *ggplot21*.
+We used several R packages to calculate the F score as cluster sizes are incremented, including FlowSOM<sup>3</sup>,, flowCore<sup>4</sup>,, and ggplot2<sup>1</sup> for visualisation. The script *FlowSOM-Fscore.R* first uses *flowCore<sup>4</sup>, * to load the FCS files attached in /data/. which is followed by marker selection and data normalisation. The loaded FCS files are then used to calculate a Self-organising map using *FlowSOM*. 24 *FlowSOM* graphs are generated for both Aurora and CyTOF FCS files with exponentially larger cluster sizes {2 … 25}^2 and the *FMeasure* algorithm from *FlowSOM* is used to generate an F-score after each incrementation. The F-scores are finally plotted using *ggplot2<sup>1</sup>*.
 
 To reproduce the F score calculation, you will need to follow these steps to run this code in R:
 
