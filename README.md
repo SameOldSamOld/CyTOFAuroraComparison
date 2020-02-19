@@ -16,7 +16,7 @@ To obtain the raw data values, *plotPCCounts.R* requires the data from */data/pe
 
 This code can be run by copy pasting this code into the RStudio Console:
 
-    eval(parse( "https://raw.githubusercontent.com/SameOldSamOld/CyTOFAuroraComparison/master/plotPCCounts_figure1d.R"))
+    eval(parse("https://raw.githubusercontent.com/SameOldSamOld/CyTOFAuroraComparison/master/plotPCCounts_figure1d.R"))
 
 ## Calculate Concordance Correlation Coefficient
 
@@ -28,7 +28,7 @@ In order to address whether cell percentages defined in our CyTOF or Aurora data
 
 This code can be run by copy pasting this code into the RStudio Console:
 
-    eval(parse( "https://raw.githubusercontent.com/SameOldSamOld/CyTOFAuroraComparison/master/ccc_plot.R"))
+    eval(parse("https://raw.githubusercontent.com/SameOldSamOld/CyTOFAuroraComparison/master/ccc_plot.R"))
 
 ## Calculate and plot F-scores
 
