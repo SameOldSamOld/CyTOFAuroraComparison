@@ -2,7 +2,7 @@
 
 This github page contains the scripts and algorithms used for the comparison of CYTOF and Aurora technologies as presented in Ferrer-Font, Cytometry A, 2020 (Link will be added when made available).
 
-## Code to compare immune cell percentages measured by CyTOF and Aurora technologies
+## Compare immune cell percentages measured by CyTOF and Aurora technologies
 
 We wanted to visually and statistically compare the ability of CyTOF and Aurora technologies to measure the similarity of 11 immune cell populations. To compare each population, we calculated the 95% confidence interval of all cell population replicates. The statistical values were calculated in R and then visualised using *ggplot2<sup>1</sup>*
 
@@ -18,7 +18,7 @@ This code can be run by copy pasting this code into the RStudio Console:
 
     eval(parse( "https://raw.githubusercontent.com/SameOldSamOld/CyTOFAuroraComparison/master/plotPCCounts_figure1d.R"))
 
-## Code to generate Concordance Correlation Coefficient
+## Calculate Concordance Correlation Coefficient
 
 In order to address whether cell percentages defined in our CyTOF or Aurora datasets were comparable, we calculated the concordance correlation coefficient which calculates the agreement between two variables. This statistic was calculated by installing the R package *epiR<sup>2</sup>* and visualised using *ggplot2<sup>1</sup>*
 
@@ -30,7 +30,7 @@ This code can be run by copy pasting this code into the RStudio Console:
 
     eval(parse( "https://raw.githubusercontent.com/SameOldSamOld/CyTOFAuroraComparison/master/ccc_plot.R"))
 
-## Code to calculate and plot F-scores
+## Calculate and plot F-scores
 
 In order to determine the number of clusters that would optimally represent our data using Self-organising Maps for cytometry data such as FlowSOM<sup>3</sup>, we compared the effect of incrementing the number of clusters in a [i,j] matrix. FlowSOM<sup>3</sup>, has an inbuilt function (FMeasure) to compare two FlowSOM<sup>3</sup>, graphs in an F-score. The F-score summarises the precision and recall between two observations. We observed that an optimal range of clusters was achieved between 80 - 150 clusters for our dataset. A lower number of clusters was not biologically relevant and higher numbers of clusters caused cyclic graphs.
 
