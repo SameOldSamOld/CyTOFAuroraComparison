@@ -22,7 +22,7 @@ This code can be run by copy pasting this code into the RStudio Console:
 
 In order to address whether cell percentages defined in our CyTOF or Aurora datasets were comparable, we calculated the concordance correlation coefficient which calculates the agreement between two variables. This statistic was calculated by installing the R package *epiR<sup>2</sup>* and visualised using *ggplot2<sup>1</sup>*
 
- ![A concordance correlation coefficient plot](/data/ccc_plot.pdf) was generated to calculate a coefficient for similar cell populations between CyTOF and Aurora technologies. This is performed by installing the *epiR<sup>2</sup>* package to calculate the concordance correlation coefficient from raw values obtained by Ferrer-Font, L. et. al. The calculation was performed between two sets of observations (CyTOF & Aurora) with a 95% confidence interval using the ‘z-transform’ method. 
+ A concordance correlation coefficient ![plot](/data/ccc_plot.pdf) was generated to calculate a coefficient for similar cell populations between CyTOF and Aurora technologies. This is performed by installing the *epiR<sup>2</sup>* package to calculate the concordance correlation coefficient from raw values obtained by Ferrer-Font, L. et. al. The calculation was performed between two sets of observations (CyTOF & Aurora) with a 95% confidence interval using the ‘z-transform’ method. 
 
 *ccc_plot.R* is the script used to calculate the concordance correlation coefficient. Raw values used to calculate the correlation concordance coefficient are included within the script. 
 
