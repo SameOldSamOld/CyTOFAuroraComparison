@@ -1,6 +1,6 @@
 # CyTOFAuroraComparison
 
-This github page contains the scripts and algorithms used for the comparison of CYTOF and Aurora technologies as presented in Ferrer-Font, Cytometry A, 2020 (Link will be added when made available).
+This github page contains the scripts and algorithms used for the comparison of CYTOF and Aurora technologies as presented in Ferrer-Font, Cytometry A, 2020 https://doi.org/10.1002/cyto.a.24016.
 
 ## Compare immune cell percentages measured by CyTOF and Aurora technologies
 
